@@ -56,3 +56,14 @@ X_train_bad = np.array([add_noise(degrade_image(x.squeeze()), noise_level=0.05) 
 X_val_bad   = np.array([add_noise(degrade_image(x.squeeze()), noise_level=0.05) for x in X_val]).reshape(-1,28,28,1)
 X_test_bad  = np.array([add_noise(degrade_image(x.squeeze()), noise_level=0.05) for x in X_test]).reshape(-1,28,28,1)
 
+
+def get_datasets():
+    return {
+        "train": (X_train, y_train),
+        "val":   (X_val, y_val),
+        "test":  (X_test, y_test),
+
+        "train_bad": X_train_bad,
+        "val_bad":   X_val_bad,
+        "test_bad":  X_test_bad
+    }
