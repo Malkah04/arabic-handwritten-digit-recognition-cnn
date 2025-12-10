@@ -3,6 +3,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import json
 
 from itertools import cycle
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, roc_curve, auc
@@ -30,6 +31,32 @@ y_preds = y_scores.argmax(axis=1)
 
 print(f"shape of y_score: {y_scores.shape}")
 print(f"shape of y_pred: {y_preds.shape}")
+
+def plot_learning_curve(history):
+    acc = history['accuracy']
+    val_acc = history['val_accuracy']
+    loss = history['loss']
+    val_loss = history['val_loss']
+    epochs = range(1, len(acc) + 1)
+
+    plt.figure(figsize=(12, 5))
+
+    plt.subplot(1, 2, 1)
+    plt.plot(epochs, acc, 'bo-', label='Training acc')
+    plt.plot(epochs, val_acc, 'ro-', label='Validation acc')
+    plt.title('Training and validation accuracy')
+    plt.legend()
+
+    plt.subplot(1, 2, 2)
+    plt.plot(epochs, loss, 'bo-', label='Training loss')
+    plt.plot(epochs, val_loss, 'ro-', label='Validation loss')
+    plt.title('Training and validation loss')
+    plt.legend()
+
+    save_png = os.path.join(REPORT_FOLDER, "learning_curve.png")
+    plt.savefig(save_png)
+    plt.show()
+    plt.close()
 
 def multi_class_evaluation(y_test, y_preds, y_scores):
     class_names = [str(i) for i in range(10)]
@@ -61,3 +88,17 @@ def multi_class_evaluation(y_test, y_preds, y_scores):
     plt.savefig(save_png)
     plt.show()
     plt.close()
+
+if __name__ == "__main__":
+    HISTORY_PATH = os.path.join(os.path.dirname(__file__), "training_history.json")
+    try:
+        with open(HISTORY_PATH, 'r') as f:
+            history = json.load(f)
+        plot_learning_curve(history)
+        print(f"Successfully loaded and plotted learning curve from {HISTORY_PATH}")
+    except FileNotFoundError:
+        print(f"History file not found at {HISTORY_PATH}. Skipping learning curve plot.")
+    except Exception as e:
+        print(f"Error loading or plotting the learning curve: {e}")
+
+    multi_class_evaluation(y_test, y_preds, y_scores)
