@@ -18,7 +18,7 @@ def train_model(epochs=10, batch_size=32):
     early_stopping = tf.keras.callbacks.EarlyStopping(
         monitor='val_loss', patience=5, restore_best_weights=True
     )
-    model_path = os.path.join(os.path.dirname(__file__), "best_model.h5")
+    model_path = os.path.join(os.path.dirname(__file__), "saved_model.h5")
     model_checkpoint = tf.keras.callbacks.ModelCheckpoint(
         filepath=model_path,
         monitor='val_accuracy',

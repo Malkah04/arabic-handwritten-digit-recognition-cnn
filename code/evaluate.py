@@ -13,8 +13,8 @@ from itertools import cycle
 
 from data import get_datasets
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "best_model.h5")
-REPORT_FOLDER = os.path.join(os.path.dirname(__file__), "reports")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "saved_model.h5")
+REPORT_FOLDER = os.path.join(os.path.dirname(__file__), "results")
 
 data_dict = get_datasets()
 X_test, y_test = data_dict["test"]

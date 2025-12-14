@@ -31,7 +31,7 @@ Handwritten digit recognition is a fundamental computer vision problem. In this 
 
 Example of an original handwritten digit image and its degraded version after applying noise during preprocessing.
 
-![Original vs Noisy](code/reports/bad,origin.png)
+![Original vs Noisy](results/bad,origin.png)
 
 
 
@@ -109,13 +109,13 @@ The evaluation outputs accuracy and loss on the test dataset.
 
 The following plot shows the training and validation accuracy/loss over epochs, helping analyze convergence and potential overfitting.
 
-![Learning Curve](code/reports/learning_curve.png)
+![Learning Curve](results/learning_curve.png)
 
 ### Confusion Matrix
 
 The confusion matrix illustrates how well the model classifies each Arabic digit (0–9) and highlights common misclassifications.
 
-![Confusion Matrix](code/reports/confusion_matrix_for_arabic_number_classification_model.png)
+![Confusion Matrix](results/confusion_matrix_for_arabic_number_classification_model.png)
 
 ---
 

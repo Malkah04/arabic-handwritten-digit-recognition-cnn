@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image
 from tensorflow.keras.models import load_model
 
-model = load_model("best_model.h5")
+model = load_model("../saved_model/best_model.h5")
 image_size = (28, 28)
 
 def preprocess_image(img_path):
@@ -12,7 +12,7 @@ def preprocess_image(img_path):
     img_array = img_array.reshape(1, 28, 28, 1)
     return img_array
 
-img_path = "../Data/dataset_split/predict/sample_image2.png"
+img_path = "../Data/dataset_split/predict/num_9.jpg"
 
 
 img_array = preprocess_image(img_path)
